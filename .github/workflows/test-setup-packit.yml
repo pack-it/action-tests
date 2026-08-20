@@ -1,0 +1,10 @@
+name: test-setup-packit
+run-name: Testing setup-packit action
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pack-it/actions/setup-packit@main
+        with:
+          version: 0.0.4
