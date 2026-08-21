@@ -2,8 +2,20 @@ name: test-setup-packit
 run-name: Testing setup-packit action
 on: [push]
 jobs:
-  test:
+  test-linux:
     runs-on: ubuntu-latest
+    steps:
+      - uses: pack-it/actions/setup-packit@main
+        with:
+          version: 0.0.4
+  test-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: pack-it/actions/setup-packit@main
+        with:
+          version: 0.0.4
+  test-windows:
+    runs-on: windows-latest
     steps:
       - uses: pack-it/actions/setup-packit@main
         with:
