@@ -1,0 +1,40 @@
+name: test-changed-packages
+run-name: Testing detect-changed-packages action
+on: [push]
+jobs:
+  test-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pack-it/actions/detect-changed-packages@main
+        id: detect
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pr: 37
+          repo-owner: pack-it
+          repo-name: core
+      - name: Print changed packages
+        run: echo "${{ steps.detect.outputs.packages }}"
+  test-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: pack-it/actions/detect-changed-packages@main
+        id: detect
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pr: 37
+          repo-owner: pack-it
+          repo-name: core
+      - name: Print changed packages
+        run: echo "${{ steps.detect.outputs.packages }}"
+  test-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: pack-it/actions/detect-changed-packages@main
+        id: detect
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pr: 37
+          repo-owner: pack-it
+          repo-name: core
+      - name: Print changed packages
+        run: echo "${{ steps.detect.outputs.packages }}"
