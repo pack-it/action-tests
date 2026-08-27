@@ -1,0 +1,55 @@
+name: test-full-workflow
+run-name: Testing full Packit action workflow
+on: [push]
+jobs:
+  test-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pack-it/actions/setup-packit@main
+        name: "Setup Packit"
+        with:
+          version: 0.0.4
+      - uses: pack-it/actions/detect-changed-packages@main
+        name: "Detect changed packages"
+        id: detect-changes
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pr: 37
+          repo-owner: pack-it
+          repo-name: core
+      - name: Install changed packages
+        run: pit install ${{ steps.detect-changes.outputs.packages }} --build-all --keep-build --verbose --skip-symlinking --skip-active
+  test-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: pack-it/actions/setup-packit@main
+        name: "Setup Packit"
+        with:
+          version: 0.0.4
+      - uses: pack-it/actions/detect-changed-packages@main
+        name: "Detect changed packages"
+        id: detect-changes
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pr: 37
+          repo-owner: pack-it
+          repo-name: core
+      - name: Install changed packages
+        run: pit install ${{ steps.detect-changes.outputs.packages }} --build-all --keep-build --verbose --skip-symlinking --skip-active
+  test-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: pack-it/actions/setup-packit@main
+        name: "Setup Packit"
+        with:
+          version: 0.0.4
+      - uses: pack-it/actions/detect-changed-packages@main
+        name: "Detect changed packages"
+        id: detect-changes
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pr: 37
+          repo-owner: pack-it
+          repo-name: core
+      - name: Install changed packages
+        run: pit install ${{ steps.detect-changes.outputs.packages }} --build-all --keep-build --verbose --skip-symlinking --skip-active
