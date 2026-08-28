@@ -1,6 +1,6 @@
 name: test-setup-packit
 run-name: Testing setup-packit action
-on: [push]
+on: [workflow_dispatch]
 jobs:
   test-linux:
     runs-on: ubuntu-latest

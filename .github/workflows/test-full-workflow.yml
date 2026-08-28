@@ -1,6 +1,6 @@
 name: test-full-workflow
 run-name: Testing full Packit action workflow
-on: [push]
+on: [workflow_dispatch]
 
 env:
   PR: 85
