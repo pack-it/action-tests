@@ -1,20 +1,30 @@
 name: test-full-workflow
 run-name: Testing full Packit action workflow
 on: [push]
+
+env:
+  PR: 85
+
 jobs:
   test-linux:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: pack-it/core
+          ref: refs/pull/${{ env.PR }}/head
       - uses: pack-it/actions/setup-packit@main
         name: "Setup Packit"
         with:
           version: 0.0.4
+          repository-url: ${{ github.workspace }}
+          repository-provider: fs
       - uses: pack-it/actions/detect-changed-packages@main
         name: "Detect changed packages"
         id: detect-changes
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          pr: 37
+          pr: ${{ env.PR }}
           repo-owner: pack-it
           repo-name: core
           filter-unsupported: true
@@ -23,16 +33,22 @@ jobs:
   test-macos:
     runs-on: macos-latest
     steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: pack-it/core
+          ref: refs/pull/${{ env.PR }}/head
       - uses: pack-it/actions/setup-packit@main
         name: "Setup Packit"
         with:
           version: 0.0.4
+          repository-url: ${{ github.workspace }}
+          repository-provider: fs
       - uses: pack-it/actions/detect-changed-packages@main
         name: "Detect changed packages"
         id: detect-changes
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          pr: 37
+          pr: ${{ env.PR }}
           repo-owner: pack-it
           repo-name: core
           filter-unsupported: true
@@ -41,16 +57,22 @@ jobs:
   test-windows:
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: pack-it/core
+          ref: refs/pull/${{ env.PR }}/head
       - uses: pack-it/actions/setup-packit@main
         name: "Setup Packit"
         with:
           version: 0.0.4
+          repository-url: ${{ github.workspace }}
+          repository-provider: fs
       - uses: pack-it/actions/detect-changed-packages@main
         name: "Detect changed packages"
         id: detect-changes
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          pr: 37
+          pr: ${{ env.PR }}
           repo-owner: pack-it
           repo-name: core
           filter-unsupported: true
