@@ -17,6 +17,7 @@ jobs:
           pr: 37
           repo-owner: pack-it
           repo-name: core
+          filter-unsupported: true
       - name: Install changed packages
         run: pit install ${{ steps.detect-changes.outputs.packages }} --build-all --keep-build --verbose --skip-symlinking --skip-active
   test-macos:
@@ -34,6 +35,7 @@ jobs:
           pr: 37
           repo-owner: pack-it
           repo-name: core
+          filter-unsupported: true
       - name: Install changed packages
         run: pit install ${{ steps.detect-changes.outputs.packages }} --build-all --keep-build --verbose --skip-symlinking --skip-active
   test-windows:
@@ -51,5 +53,6 @@ jobs:
           pr: 37
           repo-owner: pack-it
           repo-name: core
+          filter-unsupported: true
       - name: Install changed packages
         run: pit install ${{ steps.detect-changes.outputs.packages }} --build-all --keep-build --verbose --skip-symlinking --skip-active
