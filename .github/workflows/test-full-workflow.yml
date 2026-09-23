@@ -43,6 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: define-matrix-linux
     strategy:
+      fail-fast: false
       matrix:
         package: ${{ fromJSON(needs.define-matrix-linux.outputs.packages) }}
 
@@ -90,6 +91,7 @@ jobs:
     runs-on: macos-latest
     needs: define-matrix-macos
     strategy:
+      fail-fast: false
       matrix:
         package: ${{ fromJSON(needs.define-matrix-macos.outputs.packages) }}
 
@@ -137,6 +139,7 @@ jobs:
     runs-on: windows-latest
     needs: define-matrix-windows
     strategy:
+      fail-fast: false
       matrix:
         package: ${{ fromJSON(needs.define-matrix-windows.outputs.packages) }}
 
