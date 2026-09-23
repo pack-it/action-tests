@@ -1,9 +1,17 @@
 name: test-full-workflow
 run-name: Testing full Packit action workflow
-on: [workflow_dispatch]
-
-env:
-  PR: 85
+on: 
+  workflow_dispatch:
+    inputs:
+      packit_version:
+        description: 'The Packit version to use for testing'
+        required: true
+        type: string
+        default: 0.0.5
+      pr:
+        description: 'The PR on pack-it/core to test'
+        required: true
+        type: number
 
 jobs:
   define-matrix-linux:
@@ -14,11 +22,11 @@ jobs:
       - uses: actions/checkout@v6
         with:
           repository: pack-it/core
-          ref: refs/pull/${{ env.PR }}/head
+          ref: refs/pull/${{ inputs.pr }}/head
       - uses: pack-it/actions/setup-packit@main
         name: "Setup Packit"
         with:
-          version: 0.0.4
+          version: ${{ inputs.packit_version }}
           repository-url: ${{ github.workspace }}
           repository-provider: fs
       - uses: pack-it/actions/detect-changed-packages@main
@@ -26,7 +34,7 @@ jobs:
         id: detect-changes
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          pr: ${{ env.PR }}
+          pr: ${{ inputs.pr }}
           repo-owner: pack-it
           repo-name: core
           filter-unsupported: true
@@ -42,11 +50,11 @@ jobs:
       - uses: actions/checkout@v6
         with:
           repository: pack-it/core
-          ref: refs/pull/${{ env.PR }}/head
+          ref: refs/pull/${{ inputs.pr }}/head
       - uses: pack-it/actions/setup-packit@main
         name: "Setup Packit"
         with:
-          version: 0.0.4
+          version: ${{ inputs.packit_version }}
           repository-url: ${{ github.workspace }}
           repository-provider: fs
       - name: Install package
@@ -61,11 +69,11 @@ jobs:
       - uses: actions/checkout@v6
         with:
           repository: pack-it/core
-          ref: refs/pull/${{ env.PR }}/head
+          ref: refs/pull/${{ inputs.pr }}/head
       - uses: pack-it/actions/setup-packit@main
         name: "Setup Packit"
         with:
-          version: 0.0.4
+          version: ${{ inputs.packit_version }}
           repository-url: ${{ github.workspace }}
           repository-provider: fs
       - uses: pack-it/actions/detect-changed-packages@main
@@ -73,7 +81,7 @@ jobs:
         id: detect-changes
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          pr: ${{ env.PR }}
+          pr: ${{ inputs.pr }}
           repo-owner: pack-it
           repo-name: core
           filter-unsupported: true
@@ -89,11 +97,11 @@ jobs:
       - uses: actions/checkout@v6
         with:
           repository: pack-it/core
-          ref: refs/pull/${{ env.PR }}/head
+          ref: refs/pull/${{ inputs.pr }}/head
       - uses: pack-it/actions/setup-packit@main
         name: "Setup Packit"
         with:
-          version: 0.0.4
+          version: ${{ inputs.packit_version }}
           repository-url: ${{ github.workspace }}
           repository-provider: fs
       - name: Install package
@@ -108,11 +116,11 @@ jobs:
       - uses: actions/checkout@v6
         with:
           repository: pack-it/core
-          ref: refs/pull/${{ env.PR }}/head
+          ref: refs/pull/${{ inputs.pr }}/head
       - uses: pack-it/actions/setup-packit@main
         name: "Setup Packit"
         with:
-          version: 0.0.4
+          version: ${{ inputs.packit_version }}
           repository-url: ${{ github.workspace }}
           repository-provider: fs
       - uses: pack-it/actions/detect-changed-packages@main
@@ -120,7 +128,7 @@ jobs:
         id: detect-changes
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          pr: ${{ env.PR }}
+          pr: ${{ inputs.pr }}
           repo-owner: pack-it
           repo-name: core
           filter-unsupported: true
@@ -136,11 +144,11 @@ jobs:
       - uses: actions/checkout@v6
         with:
           repository: pack-it/core
-          ref: refs/pull/${{ env.PR }}/head
+          ref: refs/pull/${{ inputs.pr }}/head
       - uses: pack-it/actions/setup-packit@main
         name: "Setup Packit"
         with:
-          version: 0.0.4
+          version: ${{ inputs.packit_version }}
           repository-url: ${{ github.workspace }}
           repository-provider: fs
       - name: Install package
