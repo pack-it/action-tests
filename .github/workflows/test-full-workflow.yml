@@ -59,7 +59,7 @@ jobs:
           repository-url: ${{ github.workspace }}
           repository-provider: fs
       - name: Install package
-        run: pit install ${{ matrix.package }} --build-all --keep-build --verbose --skip-symlinking --skip-active
+        run: pit install ${{ matrix.package }} --build-all --keep-build --verbose --skip-symlinking --skip-active --execute-build-test
   
 
   define-matrix-macos:
@@ -107,7 +107,7 @@ jobs:
           repository-url: ${{ github.workspace }}
           repository-provider: fs
       - name: Install package
-        run: pit install ${{ matrix.package }} --build-all --keep-build --verbose --skip-symlinking --skip-active
+        run: pit install ${{ matrix.package }} --build-all --keep-build --verbose --skip-symlinking --skip-active --execute-build-test
   
   
   define-matrix-windows:
@@ -155,4 +155,4 @@ jobs:
           repository-url: ${{ github.workspace }}
           repository-provider: fs
       - name: Install package
-        run: pit install ${{ matrix.package }} --build-all --keep-build --verbose --skip-symlinking --skip-active
+        run: pit install ${{ matrix.package }} --build-all --keep-build --verbose --skip-symlinking --skip-active --execute-build-test
